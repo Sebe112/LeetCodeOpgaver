@@ -566,3 +566,140 @@ public class Solution {
         return p;
     }
 }
+
+problem 9
+
+Given an integer x, return true if x is a palindrome, and false otherwise.
+
+ 
+
+Example 1:
+
+Input: x = 121
+Output: true
+Explanation: 121 reads as 121 from left to right and from right to left.
+Example 2:
+
+Input: x = -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+Example 3:
+
+Input: x = 10
+Output: false
+Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+ 
+
+Constraints:
+
+-231 <= x <= 231 - 1
+
+min solution
+
+public class Solution {
+    public bool IsPalindrome(int x) {
+        if (x < 0) {
+        return false; 
+        }
+        string y = x.ToString();
+        char[] stringArray = x.ToString().ToCharArray();
+        Array.Reverse(stringArray);
+        string reversedString = new string(stringArray);
+
+        if (y == reversedString) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+Problem 58
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+A word is a maximal substring consisting of non-space characters only.
+
+Example 1:
+
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+
+Example 2:
+
+Input: s = " fly me to the moon "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+
+Example 3:
+
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+
+Constraints:
+
+1 <= s.length <= 10⁴
+
+s consists of only English letters and spaces.
+
+There will be at least one word in s.
+
+min solution
+
+public class Solution {
+    public int LengthOfLastWord(string s) {
+        int answer = 0;
+        for (int i = s.Length - 1; i > -1; i--) {
+            if (s[i] != ' ') {
+                answer += 1;
+                continue;
+            }
+            else if (s[i] == ' ' && answer == 0) {
+                continue;
+            }
+            else {
+                return answer;
+            }
+        }
+        return answer;
+    }
+}
+
+Problem 283
+
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+You must do this in-place without making a copy of the array.
+
+Example 1:
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+
+Example 2:
+Input: nums = [0]
+Output: [0]
+
+Constraints:
+
+1 <= nums.length <= 10⁴
+
+-2³¹ <= nums[i] <= 2³¹ - 1
+
+min solution
+
+public class Solution {
+    public void MoveZeroes(int[] nums) {
+        int pos = 0;
+        for (int i = 0; i < nums.Length; i++) {
+            if (nums[i] != 0) {
+                nums[pos] = nums[i];
+                pos++;
+            }
+        }
+        while (pos < nums.Length) {
+            nums[pos] = 0;
+            pos++;
+        }
+    }
+}
